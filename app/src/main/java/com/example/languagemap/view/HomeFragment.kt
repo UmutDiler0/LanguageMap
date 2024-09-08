@@ -11,8 +11,8 @@ import com.example.languagemap.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
-    var _binding: FragmentHomeBinding? = null
-    val binding get() = _binding!!
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

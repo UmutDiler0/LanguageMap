@@ -41,6 +41,7 @@ android {
 
 dependencies {
 
+    implementation (libs.lottie)
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.core.ktx)
