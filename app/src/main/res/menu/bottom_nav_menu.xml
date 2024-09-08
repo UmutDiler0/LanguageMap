@@ -6,4 +6,9 @@
         android:title="@string/home"
         android:icon="@drawable/ic_question" />
 
+    <item
+        android:id="@+id/learnedFragment"
+        android:title="@string/home"
+        android:icon="@drawable/ic_question" />
+
 </menu>
