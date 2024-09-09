@@ -2,7 +2,9 @@ package com.example.languagemap.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.languagemap.R
 import com.example.languagemap.databinding.RowItemBinding
 import com.example.languagemap.model.Items
 
@@ -28,5 +30,8 @@ class HomeAdapter(var wordList: List<Items>) : RecyclerView.Adapter<HomeAdapter.
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         holder.bind(wordList[position])
+        holder.binding.recyclerViewCard.setOnClickListener {
+            findNavController(it).navigate(R.id.action_homeFragment_to_itemClickedFragment)
+        }
     }
 }

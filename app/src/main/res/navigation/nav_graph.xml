@@ -18,10 +18,19 @@
         android:id="@+id/homeFragment"
         android:name="com.example.languagemap.view.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_itemClickedFragment"
+            app:destination="@id/itemClickedFragment" />
+    </fragment>
     <fragment
         android:id="@+id/learnedFragment"
         android:name="com.example.languagemap.view.LearnedFragment"
         android:label="fragment_learned"
         tools:layout="@layout/fragment_learned" />
+    <dialog
+        android:id="@+id/itemClickedFragment"
+        android:name="com.example.languagemap.view.ItemClickedFragment"
+        android:label="fragment_item_clicked"
+        tools:layout="@layout/fragment_item_clicked" />
 </navigation>
