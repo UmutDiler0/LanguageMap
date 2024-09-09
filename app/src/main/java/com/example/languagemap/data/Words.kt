@@ -1,6 +1,9 @@
 package com.example.languagemap.data
 
+import android.content.SharedPreferences
 import com.example.languagemap.model.Items
+
+lateinit var sharedPref: SharedPreferences
 
 val allWords : List<Items> = listOf(
 

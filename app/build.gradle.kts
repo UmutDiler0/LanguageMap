@@ -41,6 +41,7 @@ android {
 
 dependencies {
 
+    implementation ("com.google.code.gson:gson:2.8.9")
     implementation (libs.androidx.swiperefreshlayout)
     implementation (libs.lottie)
     implementation(libs.androidx.navigation.fragment)
