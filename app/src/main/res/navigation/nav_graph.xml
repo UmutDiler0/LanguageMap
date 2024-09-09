@@ -27,10 +27,19 @@
         android:id="@+id/learnedFragment"
         android:name="com.example.languagemap.view.LearnedFragment"
         android:label="fragment_learned"
-        tools:layout="@layout/fragment_learned" />
+        tools:layout="@layout/fragment_learned" >
+        <action
+            android:id="@+id/action_learnedFragment_to_learnedItemFragment"
+            app:destination="@id/learnedItemFragment" />
+    </fragment>
     <dialog
         android:id="@+id/itemClickedFragment"
         android:name="com.example.languagemap.view.ItemClickedFragment"
         android:label="fragment_item_clicked"
         tools:layout="@layout/fragment_item_clicked" />
+    <dialog
+        android:id="@+id/learnedItemFragment"
+        android:name="com.example.languagemap.view.LearnedItemFragment"
+        android:label="fragment_learned_item"
+        tools:layout="@layout/fragment_learned_item" />
 </navigation>

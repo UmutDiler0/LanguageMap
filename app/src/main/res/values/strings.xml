@@ -4,4 +4,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
     <string name="learned">Learned</string>
+    <string name="unlearned">Unlearned</string>
 </resources>

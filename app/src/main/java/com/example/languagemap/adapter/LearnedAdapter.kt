@@ -3,7 +3,9 @@ package com.example.languagemap.adapter
 import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.languagemap.R
 import com.example.languagemap.adapter.HomeAdapter.HomeViewHolder
 import com.example.languagemap.data.sharedPref
 import com.example.languagemap.databinding.RowItemBinding
@@ -34,5 +36,9 @@ class LearnedAdapter(var learnedList: MutableSet<Items>) : RecyclerView.Adapter<
 
     override fun onBindViewHolder(holder: LearnedViewHolder, position: Int) {
         holder.bind(learnedList.elementAt(position))
+
+        holder.binding.recyclerViewCard.setOnClickListener {
+            findNavController(it).navigate(R.id.action_learnedFragment_to_learnedItemFragment)
+        }
     }
 }

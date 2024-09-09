@@ -34,12 +34,8 @@ class LearnedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(LearnedViewModel::class.java)
-        mutableList.add(sharedPref.getStringSet("word", mutableSetOf())?.let {
-            Items(
-                it.toString(),
-                sharedPref.getStringSet("translated", mutableSetOf()).toString()
-            )
-        }!!)
+        mutableList.add(Items(sharedPref.getStringSet(
+            "word", mutableSetOf()).toString(), sharedPref.getStringSet("translated", mutableSetOf()).toString()))
         lifecycleScope.launch {
             viewModel.addLearned(mutableList)
             binding.learnedRecyclerView.adapter = LearnedAdapter(mutableList)
