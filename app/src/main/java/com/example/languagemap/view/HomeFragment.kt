@@ -1,5 +1,6 @@
 package com.example.languagemap.view
 
+import android.content.Context
 import android.os.Bundle
 import android.provider.UserDictionary.Words
 import androidx.fragment.app.Fragment
@@ -8,9 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.languagemap.R
 import com.example.languagemap.adapter.HomeAdapter
 import com.example.languagemap.data.allWords
+import com.example.languagemap.data.sharedPref
 import com.example.languagemap.databinding.FragmentHomeBinding
 import com.example.languagemap.model.Items
 import com.example.languagemap.viewmodel.HomeViewModel
@@ -33,7 +36,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        sharedPref = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         observeData()
 
@@ -48,7 +51,9 @@ class HomeFragment : Fragment() {
         viewModel.shuffleItemsForOnce()
         lifecycleScope.launch {
             viewModel.itemsState.collect {
-                binding.countyRecyclerView.adapter = HomeAdapter(it)
+                binding.wordsRecyclerView.adapter = HomeAdapter(it){
+                    findNavController().navigate(R.id.action_homeFragment_to_itemClickedFragment)
+                }
             }
         }
     }

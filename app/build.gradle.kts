@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -41,7 +42,7 @@ android {
 
 dependencies {
 
-    implementation ("com.google.code.gson:gson:2.8.9")
+    implementation (libs.gson)
     implementation (libs.androidx.swiperefreshlayout)
     implementation (libs.lottie)
     implementation(libs.androidx.navigation.fragment)

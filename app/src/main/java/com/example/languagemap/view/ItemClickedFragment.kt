@@ -5,10 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.languagemap.R
-import com.example.languagemap.data.sharedPref
 import com.example.languagemap.databinding.FragmentItemClickedBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.gson.Gson
 
 class ItemClickedFragment : BottomSheetDialogFragment() {
 
@@ -25,6 +24,9 @@ class ItemClickedFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.learnedButton.setOnClickListener {
+            dismiss()
+        }
     }
 
     override fun onDestroyView() {
