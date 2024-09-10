@@ -1,11 +1,13 @@
 package com.example.languagemap.view
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.languagemap.databinding.FragmentItemClickedBinding
+import com.example.languagemap.model.Items
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
 

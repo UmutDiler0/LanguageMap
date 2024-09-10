@@ -45,10 +45,29 @@ class HomeAdapter(
         sharedPref = holder.itemView.context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val gson = Gson()
         val learnedItems = wordList.map{gson.toJson(it)}.toMutableSet()
+        val learnedList2 = holder.itemView
         holder.binding.recyclerViewCard.setOnClickListener {
+            saveLearnedItemToPreferences(wordList.elementAt(position),holder.itemView.context)
             sharedPref.edit().putStringSet("learnedWords", learnedItems).apply()
             findNavController(holder.itemView).navigate(R.id.action_homeFragment_to_itemClickedFragment)
         }
     }
+    private fun saveLearnedItemToPreferences(item: Items,context: Context) {
+        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
 
+        // Gson ile öğeyi JSON stringe çeviriyoruz
+        val gson = Gson()
+        val jsonItem = gson.toJson(item)
+
+        // Mevcut seti alıyoruz
+        val learnedItemSet = sharedPreferences.getStringSet("learnedItems", mutableSetOf())?.toMutableSet()
+
+        // Yeni öğeyi sete ekliyoruz
+        learnedItemSet?.add(jsonItem)
+
+        // Seti kaydediyoruz
+        editor.putStringSet("learnedItems", learnedItemSet)
+        editor.apply()
+    }
 }

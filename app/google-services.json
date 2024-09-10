@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "702762295220",
+    "project_id": "languagemap-a5a29",
+    "storage_bucket": "languagemap-a5a29.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:702762295220:android:b6311545a35d023d399ce1",
+        "android_client_info": {
+          "package_name": "com.example.languagemap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoctSwi1mtAiRFTk9iZyHZ2nDdB_VeohU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
