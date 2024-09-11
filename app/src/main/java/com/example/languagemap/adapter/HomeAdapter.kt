@@ -13,12 +13,12 @@ import com.example.languagemap.data.sharedPref
 
 import com.example.languagemap.databinding.RowItemBinding
 import com.example.languagemap.model.Items
+import com.example.languagemap.view.HomeFragmentDirections
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 
 class HomeAdapter(
-    var wordList: List<Items>,
-    var onItemClickListener: (Items) -> Unit
+    var wordList: MutableSet<Items>,
 ) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     inner class HomeViewHolder(val binding: RowItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -44,8 +44,9 @@ class HomeAdapter(
         val currentItem = wordList.elementAt(position)
 
         holder.binding.recyclerViewCard.setOnClickListener {
-            onItemClickListener(currentItem)
             learnedItemsList.add(wordList.elementAt(position))
+            val action = HomeFragmentDirections.actionHomeFragmentToItemClickedFragment(currentItem)
+            findNavController(it).navigate(action)
         }
     }
 }

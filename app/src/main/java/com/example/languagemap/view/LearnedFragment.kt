@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.languagemap.R
 import com.example.languagemap.adapter.LearnedAdapter
+import com.example.languagemap.data.allWords
 import com.example.languagemap.data.learnedItemsList
 import com.example.languagemap.data.sharedPref
 import com.example.languagemap.databinding.FragmentLearnedBinding
@@ -38,7 +39,6 @@ class LearnedFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         learnedItemsList = getLearnedItemsFromPreferences().toMutableSet()
        binding.learnedRecyclerView.adapter = LearnedAdapter(learnedItemsList)
-
     }
 
     fun getLearnedItemsFromPreferences(): List<Items> {

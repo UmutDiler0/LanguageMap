@@ -1,5 +1,6 @@
 package com.example.languagemap.view
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,9 +11,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.languagemap.R
 import com.example.languagemap.adapter.HomeAdapter
+import com.example.languagemap.data.allWords
+import com.example.languagemap.data.sharedPref
 import com.example.languagemap.databinding.FragmentHomeBinding
+import com.example.languagemap.model.Items
 import com.example.languagemap.viewmodel.HomeViewModel
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.gson.Gson
 import kotlinx.coroutines.launch
 
 
@@ -21,7 +26,6 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: HomeViewModel
-    val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +40,7 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         observeData()
 
+
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.shuflleItems()
             observeData()
@@ -43,16 +48,25 @@ class HomeFragment : Fragment() {
         }
     }
 
+    fun getLearnedItemsFromPreferences(): List<Items> {
+        sharedPref = requireContext().getSharedPreferences("FirsInit", Context.MODE_PRIVATE)
+
+        val learnedItemSet = sharedPref.getStringSet("allwords", emptySet()) ?: emptySet()
+
+        val gson = Gson()
+        return learnedItemSet.map { gson.fromJson(it, Items::class.java) }
+    }
+
     fun observeData(){
         viewModel.shuffleItemsForOnce()
         lifecycleScope.launch {
             viewModel.itemsState.collect {
-                binding.wordsRecyclerView.adapter = HomeAdapter(it){
-                    findNavController().navigate(R.id.action_homeFragment_to_itemClickedFragment)
-                }
+                binding.wordsRecyclerView.adapter = HomeAdapter(it.toMutableSet())
             }
         }
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

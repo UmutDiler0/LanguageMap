@@ -9,6 +9,7 @@ import java.io.InputStreamReader
 
 lateinit var sharedPref: SharedPreferences
 var learnedItemsList: MutableSet<Items> = mutableSetOf()
+var initWordsList: MutableSet<Items> = mutableSetOf()
 
 val allWords = mutableSetOf(
 

@@ -37,6 +37,8 @@
         android:name="com.example.languagemap.view.ItemClickedFragment"
         android:label="fragment_item_clicked"
         tools:layout="@layout/fragment_item_clicked" >
+        <argument android:name="items"
+            app:argType="com.example.languagemap.model.Items"/>
     </dialog>
     <dialog
         android:id="@+id/learnedItemFragment"
