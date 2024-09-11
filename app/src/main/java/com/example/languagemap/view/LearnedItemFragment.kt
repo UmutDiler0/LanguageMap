@@ -7,8 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.languagemap.R
-import com.example.languagemap.data.learnedItems
 import com.example.languagemap.databinding.FragmentLearnedItemBinding
 import com.example.languagemap.model.Items
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment

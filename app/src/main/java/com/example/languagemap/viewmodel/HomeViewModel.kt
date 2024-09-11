@@ -1,10 +1,12 @@
 package com.example.languagemap.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import com.example.languagemap.data.allWords
 import com.example.languagemap.model.Items
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class HomeViewModel: ViewModel() {
 

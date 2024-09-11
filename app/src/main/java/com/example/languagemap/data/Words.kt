@@ -1,13 +1,16 @@
 package com.example.languagemap.data
 
+import android.content.Context
 import android.content.SharedPreferences
 import com.example.languagemap.model.Items
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.io.InputStreamReader
 
 lateinit var sharedPref: SharedPreferences
+var learnedItemsList: MutableSet<Items> = mutableSetOf()
 
-var learnedItems: MutableSet<Items> = mutableSetOf()
-
-val allWords : List<Items> = listOf(
+val allWords = mutableSetOf(
 
     Items("apple", "elma"),
     Items("banana", "muz"),

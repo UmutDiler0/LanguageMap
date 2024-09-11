@@ -43,7 +43,12 @@ android {
 
 dependencies {
 
-    implementation(libs.firebase.bom)
+    val room_version = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation (libs.gson)
     implementation (libs.androidx.swiperefreshlayout)
@@ -55,6 +60,9 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.common.ktx)
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.firebase.crashlytics.buildtools)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

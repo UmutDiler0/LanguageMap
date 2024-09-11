@@ -1,23 +1,25 @@
 package com.example.languagemap.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.languagemap.R
-import com.example.languagemap.data.learnedItems
+import com.example.languagemap.data.learnedItemsList
 import com.example.languagemap.data.sharedPref
+
 import com.example.languagemap.databinding.RowItemBinding
 import com.example.languagemap.model.Items
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 
 class HomeAdapter(
     var wordList: List<Items>,
     var onItemClicked : (Items) -> Unit
 ) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
-
 
     inner class HomeViewHolder(val binding: RowItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(items: Items) {
@@ -42,32 +44,24 @@ class HomeAdapter(
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         holder.bind(wordList.elementAt(position))
-        sharedPref = holder.itemView.context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val gson = Gson()
-        val learnedItems = wordList.map{gson.toJson(it)}.toMutableSet()
-        val learnedList2 = holder.itemView
         holder.binding.recyclerViewCard.setOnClickListener {
-            saveLearnedItemToPreferences(wordList.elementAt(position),holder.itemView.context)
-            sharedPref.edit().putStringSet("learnedWords", learnedItems).apply()
+            learnedItemsList.add(wordList.elementAt(position))
+            saveLearnedItemsToPreferences(learnedItemsList,holder.itemView.context)
             findNavController(holder.itemView).navigate(R.id.action_homeFragment_to_itemClickedFragment)
         }
     }
-    private fun saveLearnedItemToPreferences(item: Items,context: Context) {
-        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
 
-        // Gson ile öğeyi JSON stringe çeviriyoruz
+    fun saveLearnedItemsToPreferences(learnedItem: MutableSet<Items>,context: Context) {
+        sharedPref = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+
         val gson = Gson()
-        val jsonItem = gson.toJson(item)
+        val learnedItemSet = learnedItem.map { gson.toJson(it) }.toSet()
 
-        // Mevcut seti alıyoruz
-        val learnedItemSet = sharedPreferences.getStringSet("learnedItems", mutableSetOf())?.toMutableSet()
-
-        // Yeni öğeyi sete ekliyoruz
-        learnedItemSet?.add(jsonItem)
-
-        // Seti kaydediyoruz
         editor.putStringSet("learnedItems", learnedItemSet)
         editor.apply()
+
     }
+
+
 }

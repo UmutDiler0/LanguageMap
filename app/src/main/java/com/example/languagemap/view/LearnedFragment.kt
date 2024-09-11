@@ -11,16 +11,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.languagemap.adapter.LearnedAdapter
-import com.example.languagemap.data.learnedItems
+import com.example.languagemap.data.learnedItemsList
 import com.example.languagemap.data.sharedPref
 import com.example.languagemap.databinding.FragmentLearnedBinding
 import com.example.languagemap.model.Items
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.gson.Gson
 
 class LearnedFragment : Fragment() {
 
     private var _binding : FragmentLearnedBinding? = null
     private val binding get() = _binding!!
+    private var sendList: MutableSet<Items> = mutableSetOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,24 +35,20 @@ class LearnedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedPref = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val learnedItems = getLearnedItemsFromPreferences().toMutableSet()
-        binding.learnedRecyclerView.adapter = LearnedAdapter(learnedItems)
+        learnedItemsList = getLearnedItemsFromPreferences().toMutableSet()
+       binding.learnedRecyclerView.adapter = LearnedAdapter(learnedItemsList)
 
     }
+
     fun getLearnedItemsFromPreferences(): List<Items> {
-        val sharedPreferences =
-            requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
-        val learnedItemSet = sharedPreferences.getStringSet("learnedWords", null)
+        val learnedItemSet = sharedPref.getStringSet("learnedItems", emptySet()) ?: emptySet()
 
-        return if (!learnedItemSet.isNullOrEmpty()) {
-            val gson = Gson()
-            learnedItemSet.map { gson.fromJson(it, Items::class.java) }
-        } else {
-            emptyList()
-        }
+        val gson = Gson()
+        return learnedItemSet.map { gson.fromJson(it, Items::class.java) }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
