@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.languagemap.adapter.LearnedAdapter
 import com.example.languagemap.data.learnedItemsList
 import com.example.languagemap.databinding.FragmentLearnedItemBinding
 import com.example.languagemap.model.Items
@@ -31,13 +32,34 @@ class LearnedItemFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         sharedPref = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
+        val itemId = LearnedItemFragmentArgs.fromBundle(requireArguments()).item
+
         binding.unlearnedItemButton.setOnClickListener {
-            learnedItemsList.clear()
+            removeItemFromLearnedItems(itemId)
+            dismiss()
         }
 
         binding.clearList.setOnClickListener {
             sharedPref.edit().clear().apply()
         }
+    }
+
+    fun removeItemFromLearnedItems(item: Items) {
+        learnedItemsList.remove(item)
+        sharedPref.edit().clear().apply()
+        saveLearnedItemsToPreferences(learnedItemsList)
+    }
+
+    fun saveLearnedItemsToPreferences(learnedItem: MutableSet<Items>) {
+        com.example.languagemap.data.sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = com.example.languagemap.data.sharedPref.edit()
+
+        val gson = Gson()
+        val learnedItemSet = learnedItem.map { gson.toJson(it) }.toSet()
+
+        editor.putStringSet("learnedItems", learnedItemSet)
+        editor.apply()
+
     }
 
     override fun onDestroyView() {

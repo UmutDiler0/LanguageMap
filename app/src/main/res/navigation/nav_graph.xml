@@ -42,5 +42,8 @@
         android:id="@+id/learnedItemFragment"
         android:name="com.example.languagemap.view.LearnedItemFragment"
         android:label="fragment_learned_item"
-        tools:layout="@layout/fragment_learned_item" />
+        tools:layout="@layout/fragment_learned_item" >
+        <argument android:name="item"
+            app:argType="com.example.languagemap.model.Items"/>
+    </dialog>
 </navigation>

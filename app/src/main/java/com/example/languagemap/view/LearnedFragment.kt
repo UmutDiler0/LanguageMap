@@ -25,7 +25,6 @@ class LearnedFragment : Fragment() {
 
     private var _binding : FragmentLearnedBinding? = null
     private val binding get() = _binding!!
-    private var sendList: MutableSet<Items> = mutableSetOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,9 +37,7 @@ class LearnedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         learnedItemsList = getLearnedItemsFromPreferences().toMutableSet()
-       binding.learnedRecyclerView.adapter = LearnedAdapter(learnedItemsList){
-           findNavController().navigate(R.id.action_learnedFragment_to_learnedItemFragment)
-       }
+       binding.learnedRecyclerView.adapter = LearnedAdapter(learnedItemsList)
 
     }
 

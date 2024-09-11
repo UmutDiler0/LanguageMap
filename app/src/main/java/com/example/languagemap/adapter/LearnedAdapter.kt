@@ -9,11 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.languagemap.R
 import com.example.languagemap.databinding.RowItemBinding
 import com.example.languagemap.model.Items
+import com.example.languagemap.view.LearnedFragment
+import com.example.languagemap.view.LearnedFragmentDirections
 import com.google.gson.Gson
 
 class LearnedAdapter(
     var learnedList: MutableSet<Items>,
-    var onItemClicked: (Items) -> Unit
 ) :
     RecyclerView.Adapter<LearnedAdapter.LearnedViewHolder>() {
 
@@ -37,8 +38,10 @@ class LearnedAdapter(
 
     override fun onBindViewHolder(holder: LearnedViewHolder, position: Int) {
         holder.bind(learnedList.elementAt(position))
+        val currentItem = learnedList.elementAt(position)
         holder.binding.recyclerViewCard.setOnClickListener {
-            onItemClicked(learnedList.elementAt(position))
+            val action = LearnedFragmentDirections.actionLearnedFragmentToLearnedItemFragment(currentItem)
+            findNavController(it).navigate(action)
         }
     }
 }
