@@ -40,6 +40,7 @@ class HomeFragment : Fragment() {
         initWordsList = getLearnedItemsFromPreferences().toMutableSet()
         Log.i("HomeFragment", "initWordsList: ${initWordsList.size}")
         observeData()
+
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.shuflleItems()
             observeData()

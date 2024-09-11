@@ -32,6 +32,7 @@ class ItemClickedFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val itemId = ItemClickedFragmentArgs.fromBundle(requireArguments()).items
+
         binding.learnedButton.setOnClickListener {
             removeItemFromPreferences(itemId)
             saveLearnedItemsToPreferences(learnedItemsList)
@@ -39,27 +40,23 @@ class ItemClickedFragment : BottomSheetDialogFragment() {
         }
     }
 
-    fun removeItemFromPreferences(item: Items) {
+    private fun removeItemFromPreferences(item: Items) {
         sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
 
         val gson = Gson()
 
-        // Mevcut öğe listesini alıyoruz
         val savedItems = sharedPref.getStringSet("allwords", emptySet())?.toMutableSet() ?: mutableSetOf()
 
-        // Öğeyi silmek için JSON'a çeviriyoruz
         val jsonItem = gson.toJson(item)
 
-        // Öğeyi listeden kaldırıyoruz
         savedItems.remove(jsonItem)
 
-        // Güncellenmiş listeyi kaydediyoruz
         editor.putStringSet("allwords", savedItems)
         editor.apply()
     }
 
-    fun saveLearnedItemsToPreferences(learnedItem: MutableSet<Items>) {
+    private fun saveLearnedItemsToPreferences(learnedItem: MutableSet<Items>) {
         val editor = sharedPref.edit()
         val gson = Gson()
         val learnedItemSet = learnedItem.map { gson.toJson(it) }.toSet()
