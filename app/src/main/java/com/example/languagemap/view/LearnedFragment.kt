@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.languagemap.R
 import com.example.languagemap.adapter.LearnedAdapter
 import com.example.languagemap.data.learnedItemsList
 import com.example.languagemap.data.sharedPref
@@ -36,7 +38,9 @@ class LearnedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         learnedItemsList = getLearnedItemsFromPreferences().toMutableSet()
-       binding.learnedRecyclerView.adapter = LearnedAdapter(learnedItemsList)
+       binding.learnedRecyclerView.adapter = LearnedAdapter(learnedItemsList){
+           findNavController().navigate(R.id.action_learnedFragment_to_learnedItemFragment)
+       }
 
     }
 

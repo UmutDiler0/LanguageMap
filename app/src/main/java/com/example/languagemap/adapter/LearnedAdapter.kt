@@ -11,7 +11,10 @@ import com.example.languagemap.databinding.RowItemBinding
 import com.example.languagemap.model.Items
 import com.google.gson.Gson
 
-class LearnedAdapter(var learnedList: MutableSet<Items>) :
+class LearnedAdapter(
+    var learnedList: MutableSet<Items>,
+    var onItemClicked: (Items) -> Unit
+) :
     RecyclerView.Adapter<LearnedAdapter.LearnedViewHolder>() {
 
     class LearnedViewHolder(val binding: RowItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -35,7 +38,7 @@ class LearnedAdapter(var learnedList: MutableSet<Items>) :
     override fun onBindViewHolder(holder: LearnedViewHolder, position: Int) {
         holder.bind(learnedList.elementAt(position))
         holder.binding.recyclerViewCard.setOnClickListener {
-            findNavController(it).navigate(R.id.action_learnedFragment_to_learnedItemFragment)
+            onItemClicked(learnedList.elementAt(position))
         }
     }
 }

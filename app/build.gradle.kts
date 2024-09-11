@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.fir.declarations.builder.buildScript
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -37,7 +39,6 @@ android {
     }
     buildFeatures{
         viewBinding = true
-
     }
 }
 

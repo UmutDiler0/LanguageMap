@@ -18,7 +18,7 @@ import com.google.gson.Gson
 
 class HomeAdapter(
     var wordList: List<Items>,
-    var onItemClicked : (Items) -> Unit
+    var onItemClickListener: (Items) -> Unit
 ) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     inner class HomeViewHolder(val binding: RowItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -26,9 +26,6 @@ class HomeAdapter(
             with(binding) {
                 recyclerViewText.text = items.word
                 recyclerViewTranslatedText.text = items.translated
-            }
-            binding.root.setOnClickListener {
-                onItemClicked(items)
             }
         }
     }
@@ -44,24 +41,11 @@ class HomeAdapter(
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         holder.bind(wordList.elementAt(position))
+        val currentItem = wordList.elementAt(position)
+
         holder.binding.recyclerViewCard.setOnClickListener {
+            onItemClickListener(currentItem)
             learnedItemsList.add(wordList.elementAt(position))
-            saveLearnedItemsToPreferences(learnedItemsList,holder.itemView.context)
-            findNavController(holder.itemView).navigate(R.id.action_homeFragment_to_itemClickedFragment)
         }
     }
-
-    fun saveLearnedItemsToPreferences(learnedItem: MutableSet<Items>,context: Context) {
-        sharedPref = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val editor = sharedPref.edit()
-
-        val gson = Gson()
-        val learnedItemSet = learnedItem.map { gson.toJson(it) }.toSet()
-
-        editor.putStringSet("learnedItems", learnedItemSet)
-        editor.apply()
-
-    }
-
-
 }

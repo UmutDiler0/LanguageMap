@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.languagemap.data.learnedItemsList
+import com.example.languagemap.data.sharedPref
 import com.example.languagemap.databinding.FragmentItemClickedBinding
 import com.example.languagemap.model.Items
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -27,8 +29,20 @@ class ItemClickedFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.learnedButton.setOnClickListener {
-            dismiss()
+            saveLearnedItemsToPreferences(learnedItemsList)
         }
+    }
+
+    fun saveLearnedItemsToPreferences(learnedItem: MutableSet<Items>) {
+        sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+
+        val gson = Gson()
+        val learnedItemSet = learnedItem.map { gson.toJson(it) }.toSet()
+
+        editor.putStringSet("learnedItems", learnedItemSet)
+        editor.apply()
+
     }
 
     override fun onDestroyView() {
