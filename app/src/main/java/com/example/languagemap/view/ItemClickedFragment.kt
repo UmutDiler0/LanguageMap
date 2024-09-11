@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.languagemap.data.allWords
+import com.example.languagemap.data.initWordsList
 import com.example.languagemap.data.learnedItemsList
 import com.example.languagemap.data.sharedPref
 import com.example.languagemap.databinding.FragmentItemClickedBinding
@@ -32,11 +33,30 @@ class ItemClickedFragment : BottomSheetDialogFragment() {
         sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val itemId = ItemClickedFragmentArgs.fromBundle(requireArguments()).items
         binding.learnedButton.setOnClickListener {
-            allWords.remove(itemId)
-            sharedPref.edit().remove(itemId.word).apply()
-            sharedPref.edit().remove(itemId.translated).apply()
+            removeItemFromPreferences(itemId)
             saveLearnedItemsToPreferences(learnedItemsList)
+            dismiss()
         }
+    }
+
+    fun removeItemFromPreferences(item: Items) {
+        sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+
+        val gson = Gson()
+
+        // Mevcut öğe listesini alıyoruz
+        val savedItems = sharedPref.getStringSet("allwords", emptySet())?.toMutableSet() ?: mutableSetOf()
+
+        // Öğeyi silmek için JSON'a çeviriyoruz
+        val jsonItem = gson.toJson(item)
+
+        // Öğeyi listeden kaldırıyoruz
+        savedItems.remove(jsonItem)
+
+        // Güncellenmiş listeyi kaydediyoruz
+        editor.putStringSet("allwords", savedItems)
+        editor.apply()
     }
 
     fun saveLearnedItemsToPreferences(learnedItem: MutableSet<Items>) {

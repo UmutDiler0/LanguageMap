@@ -46,12 +46,12 @@ class LearnedItemFragment : BottomSheetDialogFragment() {
 
     fun removeItemFromLearnedItems(item: Items) {
         learnedItemsList.remove(item)
-        sharedPref.edit().clear().apply()
+//        sharedPref.edit().clear().apply()
         saveLearnedItemsToPreferences(learnedItemsList)
     }
 
     fun saveLearnedItemsToPreferences(learnedItem: MutableSet<Items>) {
-        com.example.languagemap.data.sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val editor = com.example.languagemap.data.sharedPref.edit()
 
         val gson = Gson()

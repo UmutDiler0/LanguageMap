@@ -28,13 +28,18 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        saveLearnedItemsToPreferences(allWords)
+        sharedPref = requireContext().getSharedPreferences("FirstInit", Context.MODE_PRIVATE)
+        val allEntries = sharedPref.all
+        if (allEntries.isEmpty()) {
+            saveLearnedItemsToPreferences(allWords)
+        }
         android.os.Handler(requireContext().mainLooper).postDelayed({
             navHostFragment.navController.navigate(R.id.action_splashFragment_to_homeFragment2)
         }, 3000)
     }
+
     fun saveLearnedItemsToPreferences(learnedItem: MutableSet<Items>) {
-        sharedPref = requireContext().getSharedPreferences("FirstInit", Context.MODE_PRIVATE)
+        sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
 
         val gson = Gson()
