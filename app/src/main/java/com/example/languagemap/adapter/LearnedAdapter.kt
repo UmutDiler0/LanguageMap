@@ -23,6 +23,7 @@ class LearnedAdapter(
             with(binding) {
                 recyclerViewText.text = items.word
                 recyclerViewTranslatedText.text = items.translated
+                itemImage.setImageResource(items.itemImage)
             }
         }
     }

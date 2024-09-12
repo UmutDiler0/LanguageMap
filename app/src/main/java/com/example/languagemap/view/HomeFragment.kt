@@ -39,9 +39,7 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         initWordsList = getLearnedItemsFromPreferences().toMutableSet()
         Log.i("HomeFragment", "initWordsList: ${initWordsList.size}")
-        viewModel.getCurrentState()
         observeData()
-
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.shuflleItems()

@@ -26,7 +26,7 @@ class HomeAdapter(
             with(binding) {
                 recyclerViewText.text = items.word
                 recyclerViewTranslatedText.text = items.translated
-                recyclerViewTranslatedText.text = items.translated2
+                itemImage.setImageResource(items.itemImage)
             }
         }
     }
