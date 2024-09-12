@@ -60,8 +60,8 @@ class HomeFragment : Fragment() {
     }
 
     fun observeData() {
-        viewModel.shuffleItemsForOnce()
         lifecycleScope.launch {
+            viewModel.shuffleItemsForOnce()
             viewModel.itemsState.collect {
                 binding.wordsRecyclerView.adapter = HomeAdapter(it.toMutableSet())
             }

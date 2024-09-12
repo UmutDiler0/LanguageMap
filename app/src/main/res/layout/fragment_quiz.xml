@@ -28,14 +28,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleText">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/gameCounter"
-            android:layout_width="55dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            tools:text="1/10" />
 
         <TextView
             android:id="@+id/wordTextView"
@@ -61,6 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="64dp"
+            android:inputType="text"
             android:hint="@string/answer" />
 
     </androidx.cardview.widget.CardView>
@@ -69,9 +62,10 @@
         android:id="@+id/submitBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:text="@string/submit"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.306"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gameCardView" />
 
@@ -79,11 +73,34 @@
         android:id="@+id/skipBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:text="@string/skip"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/submitBtn"
+        app:layout_constraintTop_toTopOf="@+id/submitBtn" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/correctAnswer"
+        android:layout_width="170dp"
+        android:layout_height="185dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/submitBtn" />
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/happy" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/falseAnswer"
+        android:layout_width="170dp"
+        android:layout_height="185dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/upset" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
