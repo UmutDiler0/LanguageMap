@@ -54,4 +54,9 @@
             android:id="@+id/action_learnedItemFragment_to_learnedFragment"
             app:destination="@id/learnedFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.example.languagemap.view.QuizFragment"
+        android:label="fragment_quiz"
+        tools:layout="@layout/fragment_quiz" />
 </navigation>

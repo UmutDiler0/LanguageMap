@@ -5,4 +5,10 @@
     <string name="home">Home</string>
     <string name="learned">Learned</string>
     <string name="unlearned">Unlearned</string>
+    <string name="quiz">Quiz</string>
+    <string name="answer">Please enter your answer</string>
+    <string name="description">Please Translate the Word</string>
+    <string name="skip">Skip</string>
+    <string name="submit">Submit</string>
+    <string name="word_quiz">Word Quiz</string>
 </resources>

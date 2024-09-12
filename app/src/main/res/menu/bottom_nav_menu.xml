@@ -4,11 +4,16 @@
     <item
         android:id="@+id/homeFragment"
         android:title="@string/home"
-        android:icon="@drawable/ic_question" />
+        android:icon="@drawable/ic_home" />
 
     <item
         android:id="@+id/learnedFragment"
-        android:title="@string/home"
+        android:title="@string/learned"
         android:icon="@drawable/ic_question" />
+
+    <item
+        android:id="@+id/quizFragment"
+        android:title="@string/quiz"
+        android:icon="@drawable/learning" />
 
 </menu>
