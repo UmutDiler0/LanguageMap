@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_width="175dp"
+    android:layout_height="250dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/recyclerViewCard"
     android:elevation="24dp"
@@ -14,23 +14,28 @@
         android:id="@+id/recyclerViewText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="asdasdasd"
+        tools:text = "asdasdasd"
+        android:layout_marginTop="48dp"
         android:textSize="16sp"
-        android:layout_marginStart="12dp"
-        android:layout_gravity="center_vertical"/>
+        android:layout_gravity="center"/>
 
     <TextView
         android:id="@+id/recyclerViewTranslatedText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="asdasdasd"
+        tools:text="asda"
         android:textSize="16sp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="40dp"
-        android:layout_gravity="end"/>
 
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center"/>
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        tools:srcCompat="@tools:sample/avatars" />
 
 
 </androidx.cardview.widget.CardView>

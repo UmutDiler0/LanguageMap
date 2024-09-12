@@ -32,20 +32,26 @@
             android:id="@+id/action_learnedFragment_to_learnedItemFragment"
             app:destination="@id/learnedItemFragment" />
     </fragment>
-    <dialog
+    <fragment
         android:id="@+id/itemClickedFragment"
         android:name="com.example.languagemap.view.ItemClickedFragment"
         android:label="fragment_item_clicked"
         tools:layout="@layout/fragment_item_clicked" >
         <argument android:name="items"
             app:argType="com.example.languagemap.model.Items"/>
-    </dialog>
-    <dialog
+        <action
+            android:id="@+id/action_itemClickedFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/learnedItemFragment"
         android:name="com.example.languagemap.view.LearnedItemFragment"
         android:label="fragment_learned_item"
         tools:layout="@layout/fragment_learned_item" >
         <argument android:name="item"
             app:argType="com.example.languagemap.model.Items"/>
-    </dialog>
+        <action
+            android:id="@+id/action_learnedItemFragment_to_learnedFragment"
+            app:destination="@id/learnedFragment" />
+    </fragment>
 </navigation>

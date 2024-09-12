@@ -6,19 +6,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.languagemap.R
 import com.example.languagemap.data.allWords
 import com.example.languagemap.data.initWordsList
 import com.example.languagemap.data.learnedItemsList
 import com.example.languagemap.data.sharedPref
 import com.example.languagemap.databinding.FragmentItemClickedBinding
 import com.example.languagemap.model.Items
+import com.example.languagemap.viewmodel.HomeViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
 
-class ItemClickedFragment : BottomSheetDialogFragment() {
+class ItemClickedFragment : Fragment() {
 
     private var _binding: FragmentItemClickedBinding? = null
     private val binding get() = _binding!!
+    private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,13 +35,16 @@ class ItemClickedFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val itemId = ItemClickedFragmentArgs.fromBundle(requireArguments()).items
 
         binding.learnedButton.setOnClickListener {
             removeItemFromPreferences(itemId)
+            initWordsList.remove(itemId)
             saveLearnedItemsToPreferences(learnedItemsList)
-            dismiss()
+            viewModel.getCurrentState()
+            findNavController().navigate(R.id.action_itemClickedFragment_to_homeFragment)
         }
     }
 

@@ -24,6 +24,12 @@ class HomeViewModel: ViewModel() {
         }
     }
 
+    fun getCurrentState(){
+        _itemsState.update{
+            initWordsList.toList()
+        }
+    }
+
     fun shuflleItems(){
         _itemsState.update{
             initWordsList.shuffled()

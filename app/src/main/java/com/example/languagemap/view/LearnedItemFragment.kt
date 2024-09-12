@@ -7,14 +7,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.example.languagemap.R
 import com.example.languagemap.adapter.LearnedAdapter
+import com.example.languagemap.data.initWordsList
 import com.example.languagemap.data.learnedItemsList
 import com.example.languagemap.databinding.FragmentLearnedItemBinding
 import com.example.languagemap.model.Items
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
 
-class LearnedItemFragment : BottomSheetDialogFragment() {
+class LearnedItemFragment : Fragment() {
 
     private var _binding: FragmentLearnedItemBinding? = null
     private val binding get() = _binding!!
@@ -36,18 +39,16 @@ class LearnedItemFragment : BottomSheetDialogFragment() {
 
         binding.unlearnedItemButton.setOnClickListener {
             removeItemFromLearnedItems(itemId)
-            dismiss()
-        }
-
-        binding.clearList.setOnClickListener {
-            sharedPref.edit().clear().apply()
+            findNavController().navigate(R.id.action_learnedItemFragment_to_learnedFragment)
         }
     }
 
     fun removeItemFromLearnedItems(item: Items) {
         learnedItemsList.remove(item)
-//        sharedPref.edit().clear().apply()
-        saveLearnedItemsToPreferences(learnedItemsList)
+        initWordsList.add(item)
+
+        removeItemFromPreferences(item)
+        saveLearnedItemsToPreferences(initWordsList)
     }
 
     fun saveLearnedItemsToPreferences(learnedItem: MutableSet<Items>) {
@@ -57,9 +58,25 @@ class LearnedItemFragment : BottomSheetDialogFragment() {
         val gson = Gson()
         val learnedItemSet = learnedItem.map { gson.toJson(it) }.toSet()
 
-        editor.putStringSet("learnedItems", learnedItemSet)
+        editor.putStringSet("allwords", learnedItemSet)
         editor.apply()
 
+    }
+
+    private fun removeItemFromPreferences(item: Items) {
+        com.example.languagemap.data.sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = com.example.languagemap.data.sharedPref.edit()
+
+        val gson = Gson()
+
+        val savedItems = com.example.languagemap.data.sharedPref.getStringSet("learnedItems", emptySet())?.toMutableSet() ?: mutableSetOf()
+
+        val jsonItem = gson.toJson(item)
+
+        savedItems.remove(jsonItem)
+
+        editor.putStringSet("learnedItems", savedItems)
+        editor.apply()
     }
 
     override fun onDestroyView() {
