@@ -6,24 +6,14 @@ import com.example.languagemap.model.Items
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
-class HomeViewModel: ViewModel() {
+class ItemClickedViewModel: ViewModel() {
 
     private var _itemsState = MutableStateFlow(listOf<Items>())
     val itemsState get() = _itemsState
-    private var isShuffled = false
 
-    fun shuffleItemsForOnce(){
-        if (!isShuffled) {
-            _itemsState.update{
-                initWordsList.shuffled()
-            }
-            isShuffled = true
-        }
-    }
-
-    fun shuflleItems(){
+    fun getCurrentState(){
         _itemsState.update{
-            initWordsList.shuffled()
+            initWordsList.toList()
         }
     }
 }

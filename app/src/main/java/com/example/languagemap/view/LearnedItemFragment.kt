@@ -37,7 +37,14 @@ class LearnedItemFragment : Fragment() {
 
         val itemId = LearnedItemFragmentArgs.fromBundle(requireArguments()).item
 
-        binding.unlearnedItemButton.setOnClickListener {
+        with(binding){
+            enLearnedText.text = itemId.enSentence
+            deuText.text = itemId.deuSentence
+            trLearnedText.text = itemId.trSentence
+            learnedDetailImage.setImageResource(itemId.itemImage)
+        }
+
+        binding.unlearnedButton.setOnClickListener {
             removeItemFromLearnedItems(itemId)
             findNavController().navigate(R.id.action_learnedItemFragment_to_learnedFragment)
         }

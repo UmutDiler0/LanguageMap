@@ -16,6 +16,7 @@ import com.example.languagemap.data.sharedPref
 import com.example.languagemap.databinding.FragmentItemClickedBinding
 import com.example.languagemap.model.Items
 import com.example.languagemap.viewmodel.HomeViewModel
+import com.example.languagemap.viewmodel.ItemClickedViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
 
@@ -23,7 +24,7 @@ class ItemClickedFragment : Fragment() {
 
     private var _binding: FragmentItemClickedBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: HomeViewModel
+    private lateinit var viewModel: ItemClickedViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,9 +36,17 @@ class ItemClickedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ItemClickedViewModel::class.java)
         sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val itemId = ItemClickedFragmentArgs.fromBundle(requireArguments()).items
+
+        with(binding){
+            enText.text = itemId.enSentence
+            deuText.text = itemId.deuSentence
+            trText.text = itemId.trSentence
+            itemDetailImage.setImageResource(itemId.itemImage)
+        }
+
 
         binding.learnedButton.setOnClickListener {
             removeItemFromPreferences(itemId)
@@ -45,6 +54,7 @@ class ItemClickedFragment : Fragment() {
             saveLearnedItemsToPreferences(learnedItemsList)
             viewModel.getCurrentState()
             findNavController().navigate(R.id.action_itemClickedFragment_to_homeFragment)
+
         }
     }
 

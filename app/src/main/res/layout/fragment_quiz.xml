@@ -3,15 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.LearnedFragment">
+    tools:context=".view.QuizFragment">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/learnedRecyclerView"
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"/>
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

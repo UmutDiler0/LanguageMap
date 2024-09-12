@@ -1,23 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".view.LearnedItemFragment">
 
     <Button
-        android:id="@+id/unlearnedItemButton"
+        android:id="@+id/unlearnedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/unlearned"
-        />
-    <Button
-        android:id="@+id/clearList"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/learnedDetailImage"
+        android:layout_width="170dp"
+        android:layout_height="193dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/trLearnedText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="clear list"
-        />
+        android:layout_marginTop="60dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/learnedDetailImage"
+        app:layout_constraintStart_toStartOf="@+id/learnedDetailImage"
+        app:layout_constraintTop_toBottomOf="@+id/learnedDetailImage"
+        tools:text="asdasdasdasdasa" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/trLearnedIcon"
+        android:layout_width="60dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="60dp"
+        android:src="@drawable/tr"
+        app:layout_constraintEnd_toStartOf="@+id/trLearnedText"
+        app:layout_constraintTop_toBottomOf="@+id/learnedDetailImage" />
+
+
+    <ImageView
+        android:id="@+id/euLearnedIcon"
+        android:layout_width="60dp"
+        android:layout_height="65dp"
+        android:src="@drawable/en"
+        android:layout_marginTop="48dp"
+        app:layout_constraintStart_toStartOf="@+id/deuLearnedIcon"
+        app:layout_constraintTop_toBottomOf="@+id/deuLearnedIcon" />
+
+    <TextView
+        android:id="@+id/enLearnedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/deuText"
+        app:layout_constraintStart_toStartOf="@+id/deuText"
+        app:layout_constraintTop_toTopOf="@+id/euLearnedIcon"
+        tools:text="asdasdasdasdasa" />
+
+    <ImageView
+        android:id="@+id/deuLearnedIcon"
+        android:layout_width="60dp"
+        android:layout_height="65dp"
+        android:src="@drawable/deu"
+        android:layout_marginTop="48dp"
+        app:layout_constraintStart_toStartOf="@+id/trLearnedIcon"
+        app:layout_constraintTop_toBottomOf="@+id/trLearnedIcon" />
+
+    <TextView
+        android:id="@+id/deuText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/trLearnedText"
+        app:layout_constraintStart_toStartOf="@+id/trLearnedText"
+        app:layout_constraintTop_toTopOf="@+id/deuLearnedIcon"
+        tools:text="asdasdasdasdasa" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
