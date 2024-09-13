@@ -11,12 +11,15 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.example.languagemap.MainActivity
+import com.example.languagemap.R
 import com.example.languagemap.adapter.HomeAdapter
 import com.example.languagemap.data.initWordsList
 import com.example.languagemap.data.sharedPref
 import com.example.languagemap.databinding.FragmentHomeBinding
 import com.example.languagemap.model.Items
 import com.example.languagemap.viewmodel.HomeViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
@@ -26,6 +29,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModels<HomeViewModel>()
+    private lateinit var bottomNav: BottomNavigationView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +42,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initWordsList = getLearnedItemsFromPreferences().toMutableSet()
+        bottomNav = (activity as MainActivity).findViewById(R.id.bottomNavigationView)
+        bottomNav.visibility = View.VISIBLE
 
         observeData()
 

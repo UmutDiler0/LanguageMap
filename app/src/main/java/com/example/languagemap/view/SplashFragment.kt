@@ -8,27 +8,36 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
+import com.example.languagemap.MainActivity
 import com.example.languagemap.R
 import com.example.languagemap.data.allWords
 import com.example.languagemap.data.sharedPref
+import com.example.languagemap.databinding.FragmentSplashBinding
 import com.example.languagemap.model.Items
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 
 class SplashFragment : Fragment() {
 
     private lateinit var navHostFragment: NavHostFragment
+    private var _binding: FragmentSplashBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var bottomNav: BottomNavigationView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         navHostFragment = requireActivity().supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
-        return inflater.inflate(R.layout.fragment_splash, container, false)
+        _binding = FragmentSplashBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedPref = requireContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+        bottomNav = (activity as MainActivity).findViewById(R.id.bottomNavigationView)
+        bottomNav.visibility = View.GONE
 
         if (!isPreferencesNotEmpty()) {
             saveLearnedItemsToPreferences(allWords)
@@ -56,6 +65,11 @@ class SplashFragment : Fragment() {
         editor.putStringSet("allwords", allWordSet)
         editor.apply()
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 
