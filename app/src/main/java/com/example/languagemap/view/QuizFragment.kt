@@ -48,6 +48,14 @@ class QuizFragment : Fragment() {
                 observeData()
             }
         }
+
+        if(viewModel.isUsedListFull()){
+            binding.submitBtn.isEnabled = false
+            binding.answerEditText.isEnabled = false
+        }else{
+            binding.submitBtn.isEnabled = true
+            binding.answerEditText.isEnabled = true
+        }
         observeData()
     }
 
