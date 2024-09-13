@@ -2,7 +2,10 @@
 
 LanguageMap, belirli bir dildeki kelimeleri ve anlamlarını gösteren bir mobil uygulamadır. Uygulama, kullanıcılara farklı dillerde kelime öğrenme ve bu kelimeleri görselleştirme imkanı sunar. Kullanıcılar harita üzerinde seçilen dillere göre kelimeleri keşfedebilir ve diller arasında bağlantı kurabilir.
 
+[languageMap2.mp4](https://github.com/user-attachments/assets/1c070fa1-bb0e-4ca3-98e2-6ddd75489bd5)
+
 ## Özellikler
+
 
 - Farklı dillerde kelime ve anlam görüntüleme
 - Harita üzerinde dil ve kelime keşfetme
