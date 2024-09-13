@@ -8,7 +8,7 @@ import com.example.languagemap.model.Items
 lateinit var sharedPref: SharedPreferences
 var learnedItemsList: MutableSet<Items> = mutableSetOf()
 var initWordsList: MutableSet<Items> = mutableSetOf()
-
+const val API_KEY = "AIzaSyCS5iMCL6yNReRJMavfBt5-GhpGkPAdr3c"
 
 
 val allWords = mutableSetOf(

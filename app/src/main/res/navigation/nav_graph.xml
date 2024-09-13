@@ -59,4 +59,9 @@
         android:name="com.example.languagemap.view.QuizFragment"
         android:label="fragment_quiz"
         tools:layout="@layout/fragment_quiz" />
+    <fragment
+        android:id="@+id/geminiFragment"
+        android:name="com.example.languagemap.view.GeminiFragment"
+        android:label="fragment_gemini"
+        tools:layout="@layout/fragment_gemini" />
 </navigation>
