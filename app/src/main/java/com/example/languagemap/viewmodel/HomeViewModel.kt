@@ -15,7 +15,7 @@ class HomeViewModel: ViewModel() {
     fun shuffleItemsForOnce(){
         if (!isShuffled) {
             _itemsState.update{
-                initWordsList.shuffled()
+                initWordsList.shuffled().toMutableList()
             }
             isShuffled = true
         }
