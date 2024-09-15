@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
         observeData()
 
         binding.swipeRefreshLayout.setOnRefreshListener {
-            observeData()
+            viewModel.shuflleItems()
             binding.swipeRefreshLayout.isRefreshing = false
         }
     }
@@ -66,7 +66,7 @@ class HomeFragment : Fragment() {
 
     fun observeData() {
         lifecycleScope.launch {
-            viewModel.shuflleItems()
+            viewModel.shuffleItemsForOnce()
             viewModel.itemsState.collect {
                 binding.wordsRecyclerView.adapter = HomeAdapter(it.toMutableSet())
             }
