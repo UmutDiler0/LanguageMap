@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import com.example.languagemap.MainActivity
@@ -39,11 +40,14 @@ class SplashFragment : Fragment() {
         bottomNav = (activity as MainActivity).findViewById(R.id.bottomNavigationView)
         bottomNav.visibility = View.GONE
 
+        val navController = navHostFragment.navController
+        val navOpttion = NavOptions.Builder().setPopUpTo(R.id.splashFragment, true).build()
+
         if (!isPreferencesNotEmpty()) {
             saveLearnedItemsToPreferences(allWords)
         }
         android.os.Handler(requireContext().mainLooper).postDelayed({
-            navHostFragment.navController.navigate(R.id.action_splashFragment_to_homeFragment2)
+            navHostFragment.navController.navigate(R.id.action_splashFragment_to_homeFragment2,null,navOpttion)
         }, 3000)
     }
 

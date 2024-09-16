@@ -2,14 +2,11 @@ package com.example.languagemap.view
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.languagemap.MainActivity
 import com.example.languagemap.R
@@ -20,7 +17,6 @@ import com.example.languagemap.databinding.FragmentHomeBinding
 import com.example.languagemap.model.Items
 import com.example.languagemap.viewmodel.HomeViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 
@@ -71,6 +67,7 @@ class HomeFragment : Fragment() {
                 binding.wordsRecyclerView.adapter = HomeAdapter(it.toMutableSet())
             }
         }
+        viewModel.getCurrentList()
     }
 
     override fun onDestroyView() {
