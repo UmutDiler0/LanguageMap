@@ -26,18 +26,15 @@ class HomeViewModel: ViewModel() {
                     isShuffled = true
                 )
             }
-            initWordsList = _homeUiState.value.items.toMutableSet()
         }
     }
 
-    fun updateCurrentList(){
-        _homeUiState.update{state->
-            state.copy(
-                items = initWordsList.toList(),
-                isShuffled = true
+    fun getCurrentState(){
+        _homeUiState.update{
+            it.copy(
+                items = initWordsList.toMutableList()
             )
         }
-        initWordsList = _homeUiState.value.items.toMutableSet()
     }
 
     fun shuflleItems(){
@@ -47,7 +44,6 @@ class HomeViewModel: ViewModel() {
                 isShuffled = true
             )
         }
-        initWordsList = _homeUiState.value.items.toMutableSet()
     }
 
 }

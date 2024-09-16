@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by activityViewModels()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var bottomNav: BottomNavigationView
@@ -43,11 +43,8 @@ class HomeFragment : Fragment() {
         initWordsList = getLearnedItemsFromPreferences().toMutableSet()
         bottomNav = (activity as MainActivity).findViewById(R.id.bottomNavigationView)
         bottomNav.visibility = View.VISIBLE
-        viewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java)
-
 
         observeData()
-
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.shuflleItems()
@@ -58,7 +55,7 @@ class HomeFragment : Fragment() {
     fun observeData() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.shuffleItemsForOnce()
-            viewModel.updateCurrentList()
+            viewModel.getCurrentState()
             viewModel.homeUiState.collect {it->
                 binding.wordsRecyclerView.adapter = HomeAdapter(it.items.toMutableSet())
             }

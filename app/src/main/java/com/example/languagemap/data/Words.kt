@@ -18,7 +18,7 @@ val allWords = mutableSetOf(
     Items("Cherry", "Kiraz", "Kirsche", R.drawable.cherries, "Kiraz tatlıdır.", "Kirschen sind süß.", "Cherries are sweet."),
     Items("Date", "Tarih", "Dattel", R.drawable.date, "Tarihler önemlidir.", "Daten sind wichtig.", "Dates are important."),
     Items("Elderberry", "Kara Mürver", "Holunder", R.drawable.berry, "Kara mürver şifalıdır.", "Holunderbeeren sind heilend.", "Elderberries are healing."),
-//    Items("Fig", "İncir", "Feige", R.drawable.figs, "İncir tatlıdır.", "Feigen sind süß.", "Figs are sweet."),
+    Items("Fig", "İncir", "Feige", R.drawable.figs, "İncir tatlıdır.", "Feigen sind süß.", "Figs are sweet."),
 //    Items("Grape", "Üzüm", "Traube", R.drawable.grape, "Üzüm sağlıklıdır.", "Trauben sind gesund.", "Grapes are healthy."),
 //    Items("Honeydew", "Kavun", "Honigmelone", R.drawable.melon, "Kavun sulu bir meyvedir.", "Honigmelonen sind saftig.", "Honeydew is a juicy fruit."),
 //    Items("Kiwi", "Kivi", "Kiwi", R.drawable.kiwi, "Kivi ekşi bir meyvedir.", "Kiwi ist eine saure Frucht.", "Kiwi is a sour fruit."),

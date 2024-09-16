@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.languagemap.R
+import com.example.languagemap.adapter.HomeAdapter
 import com.example.languagemap.data.allWords
 import com.example.languagemap.data.initWordsList
 import com.example.languagemap.data.learnedItemsList
@@ -19,12 +22,13 @@ import com.example.languagemap.viewmodel.HomeViewModel
 import com.example.languagemap.viewmodel.ItemClickedViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
+import kotlinx.coroutines.launch
 
 class ItemClickedFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentItemClickedBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: ItemClickedViewModel
+    private val viewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +40,6 @@ class ItemClickedFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ItemClickedViewModel::class.java)
         sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val itemId = ItemClickedFragmentArgs.fromBundle(requireArguments()).items
 
@@ -52,9 +55,16 @@ class ItemClickedFragment : BottomSheetDialogFragment() {
             removeItemFromPreferences(itemId)
             initWordsList.remove(itemId)
             saveLearnedItemsToPreferences(learnedItemsList)
-            viewModel.getCurrentState()
             findNavController().navigate(R.id.action_itemClickedFragment_to_homeFragment)
 
+        }
+    }
+
+    private fun observeData(){
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.homeUiState.collect {it->
+
+            }
         }
     }
 
