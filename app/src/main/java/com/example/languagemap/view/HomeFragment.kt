@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.languagemap.MainActivity
 import com.example.languagemap.R
@@ -22,9 +24,9 @@ import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
+    private lateinit var viewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val viewModel by viewModels<HomeViewModel>()
     private lateinit var bottomNav: BottomNavigationView
 
     override fun onCreateView(
@@ -37,15 +39,29 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initWordsList = getLearnedItemsFromPreferences().toMutableSet()
         bottomNav = (activity as MainActivity).findViewById(R.id.bottomNavigationView)
         bottomNav.visibility = View.VISIBLE
+        viewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java)
+
 
         observeData()
+
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.shuflleItems()
             binding.swipeRefreshLayout.isRefreshing = false
+        }
+    }
+
+    fun observeData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.shuffleItemsForOnce()
+            viewModel.updateCurrentList()
+            viewModel.homeUiState.collect {it->
+                binding.wordsRecyclerView.adapter = HomeAdapter(it.items.toMutableSet())
+            }
         }
     }
 
@@ -58,16 +74,6 @@ class HomeFragment : Fragment() {
 
         return jsonSet?.map { gson.fromJson(it, Items::class.java) }?.toMutableSet()
             ?: mutableSetOf()
-    }
-
-    fun observeData() {
-        lifecycleScope.launch {
-            viewModel.shuffleItemsForOnce()
-            viewModel.itemsState.collect {
-                binding.wordsRecyclerView.adapter = HomeAdapter(it.toMutableSet())
-            }
-        }
-        viewModel.getCurrentList()
     }
 
     override fun onDestroyView() {

@@ -20,7 +20,7 @@ import com.example.languagemap.viewmodel.ItemClickedViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
 
-class ItemClickedFragment : Fragment() {
+class ItemClickedFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentItemClickedBinding? = null
     private val binding get() = _binding!!
