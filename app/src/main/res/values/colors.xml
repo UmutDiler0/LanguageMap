@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="bottomNav">#EADAAD</color>
     <color name="rcView">#DED0D5</color>
+    <color name="buttonColor">#DA5C89</color>
 </resources>

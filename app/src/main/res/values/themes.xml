@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.LanguageMap" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/rcView</item>
+         <item name="colorPrimary">@color/buttonColor</item>
     </style>
 
     <style name="Theme.LanguageMap" parent="Base.Theme.LanguageMap" />
