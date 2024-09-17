@@ -13,6 +13,7 @@
         android:id="@+id/learnedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
         android:text="@string/learn"
         android:layout_marginTop="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,8 +23,8 @@
 
     <ImageView
         android:id="@+id/itemDetailImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="170dp"
+        android:layout_height="193dp"
         android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

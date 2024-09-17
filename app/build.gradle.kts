@@ -44,6 +44,7 @@ android {
 
 dependencies {
 
+    implementation (libs.androidx.core.splashscreen)
     implementation (libs.gson)
     implementation (libs.androidx.swiperefreshlayout)
     implementation (libs.lottie)

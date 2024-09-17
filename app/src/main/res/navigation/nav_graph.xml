@@ -5,15 +5,7 @@
     android:id="@+id/navigation"
     app:startDestination="@id/splashFragment">
 
-    <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.example.languagemap.view.SplashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
-        <action
-            android:id="@+id/action_splashFragment_to_homeFragment2"
-            app:destination="@id/homeFragment" />
-    </fragment>
+
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.languagemap.view.HomeFragment"
@@ -21,7 +13,11 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_itemClickedFragment"
-            app:destination="@id/itemClickedFragment" />
+            app:destination="@id/itemClickedFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in_reverse"
+            app:popExitAnim="@anim/slide_out_reverse"/>
     </fragment>
     <fragment
         android:id="@+id/learnedFragment"
@@ -30,7 +26,11 @@
         tools:layout="@layout/fragment_learned" >
         <action
             android:id="@+id/action_learnedFragment_to_learnedItemFragment"
-            app:destination="@id/learnedItemFragment" />
+            app:destination="@id/learnedItemFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in_reverse"
+            app:popExitAnim="@anim/slide_out_reverse"/>
     </fragment>
     <dialog
         android:id="@+id/itemClickedFragment"
@@ -41,7 +41,11 @@
             app:argType="com.example.languagemap.model.Items"/>
         <action
             android:id="@+id/action_itemClickedFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in_reverse"
+            app:popExitAnim="@anim/slide_out_reverse"/>
     </dialog>
     <dialog
         android:id="@+id/learnedItemFragment"
@@ -52,7 +56,11 @@
             app:argType="com.example.languagemap.model.Items"/>
         <action
             android:id="@+id/action_learnedItemFragment_to_learnedFragment"
-            app:destination="@id/learnedFragment" />
+            app:destination="@id/learnedFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in_reverse"
+            app:popExitAnim="@anim/slide_out_reverse"/>
     </dialog>
     <fragment
         android:id="@+id/quizFragment"
@@ -64,4 +72,17 @@
         android:name="com.example.languagemap.view.GeminiFragment"
         android:label="fragment_gemini"
         tools:layout="@layout/fragment_gemini" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.languagemap.view.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in_reverse"
+            app:popExitAnim="@anim/slide_out_reverse"/>
+    </fragment>
 </navigation>

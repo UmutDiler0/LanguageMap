@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
@@ -47,7 +48,7 @@ class SplashFragment : Fragment() {
             saveLearnedItemsToPreferences(allWords)
         }
         android.os.Handler(requireContext().mainLooper).postDelayed({
-            navHostFragment.navController.navigate(R.id.action_splashFragment_to_homeFragment2,null,navOpttion)
+            navHostFragment.navController.navigate(R.id.action_splashFragment_to_homeFragment,null,navOpttion)
         }, 3000)
     }
 
@@ -70,6 +71,8 @@ class SplashFragment : Fragment() {
         editor.apply()
 
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

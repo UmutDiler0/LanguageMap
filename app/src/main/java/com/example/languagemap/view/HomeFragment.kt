@@ -45,10 +45,7 @@ class HomeFragment : Fragment() {
         bottomNav = (activity as MainActivity).findViewById(R.id.bottomNavigationView)
         bottomNav.visibility = View.VISIBLE
 
-
         observeData()
-
-
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.shuflleItems()
