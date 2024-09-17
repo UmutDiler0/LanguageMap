@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -50,10 +51,12 @@ class ItemClickedFragment : BottomSheetDialogFragment() {
             itemDetailImage.setImageResource(itemId.itemImage)
         }
 
+        observeData()
 
         binding.learnedButton.setOnClickListener {
             removeItemFromPreferences(itemId)
             initWordsList.remove(itemId)
+            viewModel.removeItemFromList(itemId)
             saveLearnedItemsToPreferences(learnedItemsList)
             findNavController().navigate(R.id.action_itemClickedFragment_to_homeFragment)
 
@@ -63,7 +66,7 @@ class ItemClickedFragment : BottomSheetDialogFragment() {
     private fun observeData(){
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.homeUiState.collect {it->
-
+                initWordsList = it.items.toMutableList()
             }
         }
     }

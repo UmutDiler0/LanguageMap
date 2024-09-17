@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.languagemap.R
 import com.example.languagemap.adapter.LearnedAdapter
@@ -14,14 +16,16 @@ import com.example.languagemap.data.initWordsList
 import com.example.languagemap.data.learnedItemsList
 import com.example.languagemap.databinding.FragmentLearnedItemBinding
 import com.example.languagemap.model.Items
+import com.example.languagemap.viewmodel.HomeViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
 
-class LearnedItemFragment : Fragment() {
+class LearnedItemFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentLearnedItemBinding? = null
     private val binding get() = _binding!!
     lateinit var sharedPref: SharedPreferences
+    private val viewModel : HomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +40,7 @@ class LearnedItemFragment : Fragment() {
         sharedPref = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
         val itemId = LearnedItemFragmentArgs.fromBundle(requireArguments()).item
+        viewModel.addItemToList(itemId)
 
         with(binding){
             enLearnedText.text = itemId.enSentence
@@ -55,7 +60,7 @@ class LearnedItemFragment : Fragment() {
         initWordsList.add(item)
 
         removeItemFromPreferences(item)
-        saveLearnedItemsToPreferences(initWordsList)
+        saveLearnedItemsToPreferences(initWordsList.toMutableSet())
     }
 
     fun saveLearnedItemsToPreferences(learnedItem: MutableSet<Items>) {

@@ -9,39 +9,59 @@ import kotlinx.coroutines.flow.update
 
 data class HomeUiState(
     val items: List<Items> = emptyList(),
-    val isShuffled: Boolean= false
+    val isShuffled: Boolean = false,
 )
 
-class HomeViewModel: ViewModel() {
+class HomeViewModel : ViewModel() {
 
     private var _homeUiState = MutableStateFlow(HomeUiState())
     val homeUiState: StateFlow<HomeUiState> = _homeUiState
 
-
-    fun shuffleItemsForOnce(){
-        if (_homeUiState.value.isShuffled.not()){
-            _homeUiState.update{
+    fun shuffleItemsForOnce() {
+        if (_homeUiState.value.isShuffled.not()) {
+            val shuflledList = initWordsList.shuffled()
+            _homeUiState.update {
                 it.copy(
-                    items = initWordsList.shuffled(),
+                    items = shuflledList,
                     isShuffled = true
                 )
             }
+            initWordsList = shuflledList.toMutableList()
         }
     }
 
-    fun getCurrentState(){
+    fun getCurrentState() {
+
+        _homeUiState.update {
+            it.copy(
+                items = _homeUiState.value.items,
+            )
+        }
+
+    }
+
+    fun shuflleItems() {
+        val shuflledList = initWordsList.shuffled()
+        _homeUiState.update {
+            it.copy(
+                items = shuflledList,
+            )
+        }
+        initWordsList = shuflledList.toMutableList()
+    }
+
+    fun removeItemFromList(itemId: Items) {
         _homeUiState.update{
             it.copy(
-                items = initWordsList.toMutableList()
+                items = _homeUiState.value.items.filter { it != itemId }
             )
         }
     }
 
-    fun shuflleItems(){
+    fun addItemToList(itemId: Items) {
         _homeUiState.update{
             it.copy(
-                items = initWordsList.shuffled(),
-                isShuffled = true
+                items = _homeUiState.value.items + itemId
             )
         }
     }

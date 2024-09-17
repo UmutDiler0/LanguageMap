@@ -14,4 +14,6 @@
     <string name="ask_gemini_ai">Ask Gemini AI</string>
     <string name="the_answer_will_shown_here">The answer will shown here</string>
     <string name="ask_gemini">Ask Gemini</string>
+    <string name="learn">Learn</string>
+    <string name="unlearn">Unlearn</string>
 </resources>

@@ -4,25 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:orientation="vertical"
     tools:context=".view.ItemClickedFragment">
 
-    <Button
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/learnedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/learned"
-        android:layout_marginBottom="50dp"
+        android:text="@string/learn"
+        android:layout_marginTop="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enText" />
 
     <ImageView
         android:id="@+id/itemDetailImage"
-        android:layout_width="170dp"
-        android:layout_height="193dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
@@ -31,23 +35,22 @@
         android:id="@+id/trText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/itemDetailImage"
-        app:layout_constraintStart_toStartOf="@+id/itemDetailImage"
-        app:layout_constraintTop_toBottomOf="@+id/itemDetailImage"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toEndOf="@+id/trIcon"
+        app:layout_constraintTop_toTopOf="@+id/trIcon"
         tools:text="asdasdasdasdasa" />
 
     <ImageView
         android:id="@+id/trIcon"
         android:layout_width="60dp"
         android:layout_height="65dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginStart="24dp"
         android:src="@drawable/tr"
-        app:layout_constraintEnd_toStartOf="@+id/trText"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemDetailImage" />
-
 
     <ImageView
         android:id="@+id/euIcon"
@@ -62,9 +65,8 @@
         android:id="@+id/enText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/deuText"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="@+id/deuText"
         app:layout_constraintTop_toTopOf="@+id/euIcon"
         tools:text="asdasdasdasdasa" />
@@ -73,8 +75,8 @@
         android:id="@+id/deuIcon"
         android:layout_width="60dp"
         android:layout_height="65dp"
-        android:src="@drawable/deu"
         android:layout_marginTop="48dp"
+        android:src="@drawable/deu"
         app:layout_constraintStart_toStartOf="@+id/trIcon"
         app:layout_constraintTop_toBottomOf="@+id/trIcon" />
 
@@ -83,8 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/trText"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="@+id/trText"
         app:layout_constraintTop_toTopOf="@+id/deuIcon"
         tools:text="asdasdasdasdasa" />

@@ -28,6 +28,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var bottomNav: BottomNavigationView
+    private var counter = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,11 +41,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initWordsList = getLearnedItemsFromPreferences().toMutableSet()
+        initWordsList = getLearnedItemsFromPreferences().toMutableList()
         bottomNav = (activity as MainActivity).findViewById(R.id.bottomNavigationView)
         bottomNav.visibility = View.VISIBLE
 
+
         observeData()
+
+
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.shuflleItems()
@@ -60,6 +64,7 @@ class HomeFragment : Fragment() {
                 binding.wordsRecyclerView.adapter = HomeAdapter(it.items.toMutableSet())
             }
         }
+
     }
 
     fun getLearnedItemsFromPreferences(): MutableSet<Items> {

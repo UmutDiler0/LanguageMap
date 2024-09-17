@@ -43,7 +43,7 @@
             android:id="@+id/action_itemClickedFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </dialog>
-    <fragment
+    <dialog
         android:id="@+id/learnedItemFragment"
         android:name="com.example.languagemap.view.LearnedItemFragment"
         android:label="fragment_learned_item"
@@ -53,7 +53,7 @@
         <action
             android:id="@+id/action_learnedItemFragment_to_learnedFragment"
             app:destination="@id/learnedFragment" />
-    </fragment>
+    </dialog>
     <fragment
         android:id="@+id/quizFragment"
         android:name="com.example.languagemap.view.QuizFragment"
