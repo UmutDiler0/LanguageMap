@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -19,7 +20,7 @@ class QuizFragment : Fragment() {
 
     private var _binding: FragmentQuizBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: QuizViewModel
+    private val viewModel: QuizViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -32,7 +33,6 @@ class QuizFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(QuizViewModel::class.java)
 
         binding.correctAnswer.visibility = View.GONE
         binding.falseAnswer.visibility = View.GONE
@@ -61,7 +61,7 @@ class QuizFragment : Fragment() {
 
 
     private fun observeData(){
-        lifecycleScope.launch{
+        viewLifecycleOwner.lifecycleScope.launch{
             viewModel.getNewWord()
             viewModel.currentWord.collect {
                 binding.wordTextView.text = it.currentWord

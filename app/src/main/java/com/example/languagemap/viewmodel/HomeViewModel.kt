@@ -37,7 +37,6 @@ class HomeViewModel : ViewModel() {
                 items = _homeUiState.value.items,
             )
         }
-
     }
 
     fun shuflleItems() {
