@@ -14,6 +14,7 @@ import com.example.languagemap.MainActivity
 import com.example.languagemap.R
 import com.example.languagemap.adapter.HomeAdapter
 import com.example.languagemap.data.initWordsList
+import com.example.languagemap.data.learnedItemsList
 import com.example.languagemap.data.sharedPref
 import com.example.languagemap.databinding.FragmentHomeBinding
 import com.example.languagemap.model.Items
@@ -42,6 +43,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initWordsList = getLearnedItemsFromPreferences().toMutableList()
+        learnedItemsList = sendLearndItemsFromPreferences().toMutableSet()
         bottomNav = (activity as MainActivity).findViewById(R.id.bottomNavigationView)
         bottomNav.visibility = View.VISIBLE
 
@@ -73,6 +75,15 @@ class HomeFragment : Fragment() {
 
         return jsonSet?.map { gson.fromJson(it, Items::class.java) }?.toMutableSet()
             ?: mutableSetOf()
+    }
+
+    fun sendLearndItemsFromPreferences(): List<Items> {
+        sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+
+        val learnedItemSet = sharedPref.getStringSet("learnedItems", emptySet()) ?: emptySet()
+
+        val gson = Gson()
+        return learnedItemSet.map { gson.fromJson(it, Items::class.java) }
     }
 
     override fun onDestroyView() {
