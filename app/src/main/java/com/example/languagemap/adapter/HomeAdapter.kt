@@ -24,9 +24,9 @@ class HomeAdapter(
     inner class HomeViewHolder(val binding: RowItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(items: Items) {
             with(binding) {
-                recyclerViewText.text = items.word
-                recyclerViewTranslatedText.text = items.translated
-                itemImage.setImageResource(items.itemImage)
+                recyclerViewText.text = items.name_tr
+                recyclerViewTranslatedText.text = items.name_en
+                itemImage.setImageResource(items.image)
             }
         }
     }

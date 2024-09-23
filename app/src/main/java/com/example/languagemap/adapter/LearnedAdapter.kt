@@ -21,9 +21,9 @@ class LearnedAdapter(
     class LearnedViewHolder(val binding: RowItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(items: Items) {
             with(binding) {
-                recyclerViewText.text = items.word
-                recyclerViewTranslatedText.text = items.translated
-                itemImage.setImageResource(items.itemImage)
+                recyclerViewText.text = items.name_en
+                recyclerViewTranslatedText.text = items.name_tr
+                itemImage.setImageResource(items.image)
             }
         }
     }

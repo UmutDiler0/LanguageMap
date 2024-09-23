@@ -2,18 +2,13 @@ package com.example.languagemap.view
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.languagemap.R
-import com.example.languagemap.adapter.HomeAdapter
-import com.example.languagemap.data.allWords
 import com.example.languagemap.data.initWordsList
 import com.example.languagemap.data.learnedItemsList
 import com.example.languagemap.data.sharedPref
@@ -45,10 +40,10 @@ class ItemClickedFragment : BottomSheetDialogFragment() {
         val itemId = ItemClickedFragmentArgs.fromBundle(requireArguments()).items
 
         with(binding){
-            enText.text = itemId.enSentence
-            deuText.text = itemId.deuSentence
-            trText.text = itemId.trSentence
-            itemDetailImage.setImageResource(itemId.itemImage)
+            enText.text = itemId.description_en
+            deuText.text = itemId.description_de
+            trText.text = itemId.description_tr
+            itemDetailImage.setImageResource(itemId.image)
         }
 
         observeData()

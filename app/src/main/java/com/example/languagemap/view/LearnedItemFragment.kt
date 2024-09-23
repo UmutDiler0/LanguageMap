@@ -43,10 +43,10 @@ class LearnedItemFragment : BottomSheetDialogFragment() {
         viewModel.addItemToList(itemId)
 
         with(binding){
-            enLearnedText.text = itemId.enSentence
-            deuText.text = itemId.deuSentence
-            trLearnedText.text = itemId.trSentence
-            learnedDetailImage.setImageResource(itemId.itemImage)
+            enLearnedText.text = itemId.description_en
+            deuText.text = itemId.description_de
+            trLearnedText.text = itemId.description_tr
+            learnedDetailImage.setImageResource(itemId.image)
         }
 
         binding.unlearnedButton.setOnClickListener {

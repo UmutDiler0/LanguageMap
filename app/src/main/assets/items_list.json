@@ -1,0 +1,47 @@
+[
+    {
+        "name_en": "Apple",
+        "name_tr": "Elma",
+        "name_de": "Apfel",
+        "image": "R.drawable.apple",
+        "description_tr": "Elma severim.",
+        "description_de": "Ich mag Äpfel.",
+        "description_en": "I like apples."
+    },
+    {
+        "name_en": "Banana",
+        "name_tr": "Muz",
+        "name_de": "Banane",
+        "image": "R.drawable.banana",
+        "description_tr": "Muz yemeyi severim.",
+        "description_de": "Ich esse gerne Bananen.",
+        "description_en": "I like eating bananas."
+    },
+    {
+        "name_en": "Cherry",
+        "name_tr": "Kiraz",
+        "name_de": "Kirsche",
+        "image": "R.drawable.cherry",
+        "description_tr": "Kiraz tatlıdır.",
+        "description_de": "Kirschen sind süß.",
+        "description_en": "Cherries are sweet."
+    },
+    {
+        "name_en": "Date",
+        "name_tr": "Tarih",
+        "name_de": "Dattel",
+        "image": "R.drawable.date",
+        "description_tr": "Tarihler önemlidir.",
+        "description_de": "Daten sind wichtig.",
+        "description_en": "Dates are important."
+    },
+    {
+        "name_en": "Elderberry",
+        "name_tr": "Kara Mürver",
+        "name_de": "Holunder",
+        "image": "R.drawable.berry",
+        "description_tr": "Kara mürver şifalıdır.",
+        "description_de": "Holunderbeeren sind heilend.",
+        "description_en": "Elderberries are healing."
+    }
+]

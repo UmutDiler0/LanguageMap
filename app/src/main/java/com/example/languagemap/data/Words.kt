@@ -9,6 +9,7 @@ lateinit var sharedPref: SharedPreferences
 var learnedItemsList: MutableSet<Items> = mutableSetOf()
 var initWordsList: MutableList<Items> = mutableListOf()
 const val API_KEY = "AIzaSyCS5iMCL6yNReRJMavfBt5-GhpGkPAdr3c"
+//var allWords: MutableSet<Items> = mutableSetOf()
 
 
 val allWords = mutableSetOf(

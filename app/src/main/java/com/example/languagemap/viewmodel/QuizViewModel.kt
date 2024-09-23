@@ -27,15 +27,15 @@ class QuizViewModel : ViewModel() {
                     return
                 } else {
                     learnedItemsList.random().let { word ->
-                        if (usedWordList.contains(word.word)) {
+                        if (usedWordList.contains(word.name_en)) {
                             getNewWord()
                             return
                         }else{
                             _currentWord.update {
                                 it.copy(
-                                    currentWord = word.word,
-                                    currentTranslationTR = word.translated,
-                                    currentTranslationDEU = word.translated2
+                                    currentWord = word.name_en,
+                                    currentTranslationTR = word.name_tr,
+                                    currentTranslationDEU = word.name_de
                                 )
                             }
 

@@ -2,6 +2,7 @@ package com.example.languagemap.view
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,8 @@ import com.example.languagemap.databinding.FragmentSplashBinding
 import com.example.languagemap.model.Items
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.io.IOException
 
 class SplashFragment : Fragment() {
 
@@ -41,8 +44,10 @@ class SplashFragment : Fragment() {
         bottomNav = (activity as MainActivity).findViewById(R.id.bottomNavigationView)
         bottomNav.visibility = View.GONE
 
-        val navController = navHostFragment.navController
         val navOpttion = NavOptions.Builder().setPopUpTo(R.id.splashFragment, true).build()
+
+//        val parsedItems: MutableSet<Items> = readItemsFromAssets(requireContext())
+//        allWords.addAll(parsedItems)
 
         if (!isPreferencesNotEmpty()) {
             saveLearnedItemsToPreferences(allWords)
@@ -72,12 +77,19 @@ class SplashFragment : Fragment() {
 
     }
 
-
+//    fun readItemsFromAssets(context: Context): MutableSet<Items> {
+//        return try {
+//            val jsonFileString = context.assets.open("items_list.json").bufferedReader().use { it.readText() }
+//            val listItemType = object : TypeToken<List<Items>>() {}.type
+//            Gson().fromJson<List<Items>>(jsonFileString, listItemType).toMutableSet()
+//        } catch (e: Exception) {
+//            mutableSetOf()
+//        }
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 
 }

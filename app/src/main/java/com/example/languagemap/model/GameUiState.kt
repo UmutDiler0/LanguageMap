@@ -5,5 +5,4 @@ data class GameUiState(
     var currentTranslationTR: String = "",
     var currentTranslationDEU: String = "",
     var isCorrect: Boolean = true,
-    var isGameOver: Boolean? = null
 )
