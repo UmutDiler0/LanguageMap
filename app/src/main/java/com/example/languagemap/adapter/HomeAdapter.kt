@@ -45,7 +45,7 @@ class HomeAdapter(
         val currentItem = wordList.elementAt(position)
 
         holder.binding.recyclerViewCard.setOnClickListener {
-            learnedItemsList.add(wordList.elementAt(position))
+
             val action = HomeFragmentDirections.actionHomeFragmentToItemClickedFragment(currentItem)
             findNavController(it).navigate(action)
         }

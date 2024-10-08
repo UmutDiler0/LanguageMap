@@ -40,6 +40,7 @@ class LearnedAdapter(
     override fun onBindViewHolder(holder: LearnedViewHolder, position: Int) {
         holder.bind(learnedList.elementAt(position))
         val currentItem = learnedList.elementAt(position)
+
         holder.binding.recyclerViewCard.setOnClickListener {
             val action = LearnedFragmentDirections.actionLearnedFragmentToLearnedItemFragment(currentItem)
             findNavController(it).navigate(action)

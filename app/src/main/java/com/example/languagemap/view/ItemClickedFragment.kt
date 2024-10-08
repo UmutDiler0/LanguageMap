@@ -50,6 +50,7 @@ class ItemClickedFragment : BottomSheetDialogFragment() {
 
         binding.learnedButton.setOnClickListener {
             removeItemFromPreferences(itemId)
+            learnedItemsList.add(itemId)
             initWordsList.remove(itemId)
             viewModel.removeItemFromList(itemId)
             saveLearnedItemsToPreferences(learnedItemsList)

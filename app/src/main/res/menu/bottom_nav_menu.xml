@@ -18,7 +18,7 @@
 
     <item
         android:id="@+id/geminiFragment"
-        android:title="@string/ask_gemini"
-        android:icon="@drawable/ai" />
+        android:icon="@drawable/ai"
+        android:title="@string/ask_gemini" />
 
 </menu>
